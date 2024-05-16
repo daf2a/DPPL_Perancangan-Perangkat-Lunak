@@ -20,8 +20,8 @@ Laporan DPPL Perancangan Perangkat Lunak
 
 Laporan DPPL ini dibuat menggunakan LaTeX. PDF laporan dapat diakses dibawah.
 
-- [__DPPL 1: CoffeMaker Analysis__](https://daf2a.github.io/dppl_ppl/dppl-1.pdf)
-- [__DPPL 2: CoffeMaker Aspect Oriented Design__](https://daf2a.github.io/dppl_ppl/dppl-2.pdf)
+- [__DPPL 1: CoffeMaker Analysis__](https://daf2a.github.io/DPPL_Perancangan-Perangkat-Lunak/dppl-1.pdf)
+- [__DPPL 2: CoffeMaker Aspect Oriented Design__](https://daf2a.github.io/DPPL_Perancangan-Perangkat-Lunak/dppl-2.pdf)
 
 ## Lisensi
 
