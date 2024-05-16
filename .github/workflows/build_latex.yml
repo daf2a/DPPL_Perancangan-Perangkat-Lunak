@@ -5,6 +5,7 @@ on:
   pull_request:
   push:
     branches: [main]
+
 jobs:
   compile:
     name: Compile
@@ -13,8 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
+      - name: Install pandoc
+        run: sudo apt-get install -y pandoc
+
       - name: Create dist directory
         run: mkdir dist
+
+      - name: Convert README.md to index.html
+        run: pandoc README.md --template=.github/pages/templates.html -o dist/index.html
 
       - name: Compile dppl 1
         uses: xu-cheng/latex-action@v3
