@@ -51,6 +51,7 @@ known to the audience.
 Software Design Document (SDD)      & \begin{tabular}[c]{@{}l@{}}Digunakan sebagai media utama untuk \\mengkomunikasikan informasi desain \\ perangkat lunak.\end{tabular}                  \\ \hline
 Design Entity                       & \begin{tabular}[c]{@{}l@{}}Sebuah elemen dari desain yang secara \\struktural dan fungsional berbeda dari \\ elemen lainnya.\end{tabular} \\ \hline
 Service Oriented Architecture (SOA)      & \begin{tabular}[c]{@{}l@{}}Sebuah gaya arsitektur perangkat lunak \\ yang memungkinkan aplikasi untuk saling \\ berinteraksi melalui layanan yang \\ terdefinisi dengan baik..\end{tabular}                  \\ \hline
+Aspect Oriented Design (AOD)        & \begin{tabular}[c]{@{}l@{}}Sebuah paradigma dalam desain perangkat \\ lunak yang bertujuan untuk meningkatkan \\ modularitas dengan memungkinkan \\ pemisahan cross-cutting concerns.\end{tabular} \\ \hline
 \end{tabular}
 \end{table}
 
@@ -113,20 +114,206 @@ Strategi desain AOD dipilih karena kemampuannya untuk mengimplementasikan aspek-
 
 \section{Data Design}
 \subsection{Data Description}
-Explain how the information domain of your system is transformed into data structures. Describe how the major data or system entities are stored, processed and organized. List any 
-databases or data storage items.
+Aplikasi "Coffee Maker" akan menyimpan berbagai jenis data untuk mendukung operasionalnya:
 
-\subsection {Data Dictionary}
-Alphabetically list the system entities or major data along with their types and descriptions. If
-you  provided  a  functional description  in  Section 3.2, list all the  functions and function 
-parameters. If you provided an OO description, list the objects and its attributes, methods and 
-method parameters.
+\begin{itemize}
+\item \textbf{Data Bahan Baku:} Informasi mengenai jumlah air (dalam mililiter), susu (dalam mililiter), dan kopi bubuk (dalam gram) yang tersedia di dalam mesin akan disimpan dan diperbarui secara berkala.
+\item \textbf{Data Harga Kopi:} Harga untuk setiap jenis kopi, yaitu Espresso, Latte, dan Cappuccino (dalam dolar), akan disimpan dalam sistem.
+\item \textbf{Data Koin yang Dimasukkan:} Jumlah masing-masing jenis koin yang dimasukkan oleh pengguna, seperti Quarters (25 sen), Dimes (10 sen), Nickels (5 sen), dan Pennies (1 sen), akan dicatat untuk keperluan pembayaran dan perhitungan kembalian.
+\end{itemize}
+
+\section{Data Dictionary}
+Berikut adalah daftar entitas sistem atau data utama dalam aplikasi "Coffee Maker" beserta tipe dan deskripsinya:
+
+\begin{tabular}{|l|l|p{10cm}|}
+\hline
+\textbf{Entitas} & \textbf{Tipe} & \textbf{Deskripsi} \\
+\hline
+Coffee & Object & Merepresentasikan jenis kopi (Espresso, Latte, Cappuccino) dengan atribut water, coffee, milk, dan price. \\
+\hline
+Coin & Object & Merepresentasikan jenis koin (Penny, Nickel, Dime, Quarter) dengan atribut value. \\
+\hline
+Inventory & Object & Menyimpan informasi mengenai persediaan bahan baku (air, kopi, susu) dengan atribut masing-masing dan uang dalam mesin (money). \\
+\hline
+Transaction & Object & Merepresentasikan sebuah transaksi dengan atribut coffeeType, payment, dan change. \\
+\hline
+StockReport & Object & Merepresentasikan laporan stok bahan baku dengan atribut water, coffee, dan milk. \\
+\hline
+SalesReport & Object & Merepresentasikan laporan penjualan dengan atribut totalSales dan totalProfit. \\
+\hline
+CoffeeMachine & Object & Merepresentasikan mesin kopi dengan method-method untuk membuat kopi (makeCoffee), menerima pembayaran (insertCoin), memberikan kembalian (returnChange), dan menghasilkan laporan (generateStockReport, generateSalesReport). \\
+\hline
+UserInterface & Object & Merepresentasikan antarmuka pengguna untuk berinteraksi dengan mesin kopi. \\
+\hline
+\end{tabular}
 
 \section{Component Design}
-In this section, we take a closer look at what each component does in a more systematic way. If you gave a functional description in section 3.2, provide a summary of your algorithm for each 
-function listed in 3.2 in procedural description language (PDL) or pseudo-code. If you gave an 
-OO description, summarize each object member function for all the objects listed in 3.2 in PDL
-or pseudo code. Describe any local data when necessary.
+Desain komponen aplikasi "Coffee Maker" dibagi menjadi tiga subsistem utama, yaitu Pembuatan Kopi, Pembayaran, dan Pelaporan. Berikut adalah penjelasan lebih rinci mengenai masing-masing komponen:
+
+\begin{enumerate}
+    \item \textbf{Pembuatan Kopi (Coffee)}
+    \begin{itemize}
+        \item \textbf{Atribut:}
+        \begin{itemize}
+            \item water (int): Jumlah air yang dibutuhkan (dalam ml).
+            \item coffee (int): Jumlah kopi yang dibutuhkan (dalam gram).
+            \item milk (int): Jumlah susu yang dibutuhkan (dalam ml).
+            \item price (float): Harga kopi.
+        \end{itemize}
+        \item \textbf{Method:}
+        \begin{itemize}
+            \item makeCoffee(): Mengurangi stok bahan baku sesuai dengan jenis kopi yang dipilih dan menambahkan harga kopi ke total pembelian.
+        \end{itemize}
+    \end{itemize}
+
+
+    \item \textbf{Pembayaran (Coin)}
+    \begin{itemize}
+        \item \textbf{Atribut:}
+        \begin{itemize}
+            \item value (float): Nilai nominal koin.
+        \end{itemize}
+        \item \textbf{Method:}
+        \begin{itemize}
+            \item insertCoin(): Memasukkan koin ke dalam mesin, memperbarui jumlah total uang yang dimasukkan, dan mengembalikan objek Transaction.
+            \item returnChange(): Menghitung dan mengembalikan kembalian kepada pengguna jika ada.
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Pelaporan (StockReport, SalesReport)}
+    \begin{itemize}
+        \item \textbf{Atribut:}
+        \begin{itemize}
+            \item StockReport.water (int): Jumlah air tersisa.
+            \item StockReport.coffee (int): Jumlah kopi tersisa.
+            \item StockReport.milk (int): Jumlah susu tersisa.
+            \item SalesReport.totalSales (float): Total penjualan.
+            \item SalesReport.totalProfit (float): Total keuntungan.
+        \end{itemize}
+        \item \textbf{Method:}
+        \begin{itemize}
+            \item generateStockReport(): Menghasilkan laporan stok bahan baku.
+            \item generateSalesReport(): Menghasilkan laporan penjualan.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Algoritma Design (Pseudocode):}
+
+\subparagraph{app.py}
+\begin{verbatim}
+Import pembuatanKopi.py, pembayaran.py, pelaporan.py
+
+makeCoffee()
+insertCoin()
+returnChange()
+generateStockReport()
+generateSalesReport()
+\end{verbatim}
+
+\subparagraph{pembuatanKopi.py}
+\begin{verbatim}
+def makeCoffee():
+    input -> coffeeType
+    logCoffee(coffeeType)
+    monitorCoffee(coffeeType)
+    validateCoffee(coffeeType)
+\end{verbatim}
+
+\subparagraph{pembayaran.py}
+\begin{verbatim}
+def insertCoin():
+    input -> coinAmount
+
+def returnChange():
+    logPayment(coinAmount)
+    monitorPayment(coinAmount)
+    validatePayment(coinAmount)
+    securePayment(coinAmount)
+\end{verbatim}
+
+\subparagraph{pelaporan.py}
+\begin{verbatim}
+def generateStockReport():
+    logReport(stock)
+    securePayment(stock)
+
+def generateSalesReport():
+    logReport(sales)
+    securePayment(sales)
+\end{verbatim}
+
+\subparagraph{monitoring.py}
+\begin{verbatim}
+From logging.py import Menu, Resources
+
+def monitorCoffee(coffeeType):
+    # Monitoring logic for coffee making
+    For item in coffeeType.ingredients:
+        Resources[amount] -= coffeeType.ingredients[item]
+
+def monitorPayment(paymentAmount, coinType):
+    for coin in Coin_values:
+        money_received += paymentAmount * coinType[currency]
+    return money_received
+\end{verbatim}
+
+\subparagraph{security.py}
+\begin{verbatim}
+def securePayment(paymentAmount):
+    # Security measures for payment handling
+    If != authority person:
+        Return false
+    Return 0
+
+def secureReport(reportType):
+    # Security measures for report generation
+    If != authority person:
+        Return false
+    Return 0
+\end{verbatim}
+
+\subparagraph{validation.py}
+\begin{verbatim}
+From logging.py import Menu, Resources
+
+def validateCoffee(coffeeType):
+    # Validation logic for coffee type
+    if coffeeType not in ["latte", "espresso", "cappuccino"]:
+        Return false
+    For item in coffeeType.ingredients:
+        If Resources[amount] < coffeeType.ingredients[item]:
+            Return false
+    Return 0
+
+def validatePayment(paymentAmount):
+    # Validation logic for payment amount
+    if paymentAmount <= 0:
+        Return false
+    If paymentAmount < totalPayment:
+        Return false
+    Return 0
+\end{verbatim}
+
+\subparagraph{logging.py}
+\begin{verbatim}
+Menu = [MenuItem(name, water, milk, coffee, cost)]
+Resources = {ingredients: amount}
+Coin_values = {coin: currency}
+Profit = 0
+
+def logCoffee(coffeeType):
+    add new item into Menu
+
+def logPayment(paymentAmount):
+    add new coin into coin_values
+
+def logReport(reportType):
+    if Type == sales:
+        print(profit)
+    elif Type == stock:
+        print(resources)
+\end{verbatim}
 
 
 \section{Human Interface Design}
