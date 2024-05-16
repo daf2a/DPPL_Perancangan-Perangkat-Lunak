@@ -55,16 +55,28 @@ Service Oriented Architecture (SOA)      & \begin{tabular}[c]{@{}l@{}}Sebuah gay
 \end{table}
 
 \section{System Overview}
-Give a general description of the functionality, context and design of your project. Provide any 
-background information if necessary.
+Aplikasi "Coffee Maker" adalah sebuah sistem yang dirancang untuk mengotomatiskan proses pembuatan kopi, mulai dari pemilihan menu hingga pelaporan transaksi dan persediaan bahan baku. Sistem ini terdiri dari tiga subsistem utama, yaitu Pembuatan Kopi, Pembayaran, dan Pelaporan. Subsistem Pembuatan Kopi bertanggung jawab untuk mengelola proses pembuatan kopi, termasuk pemilihan jenis kopi, pengecekan ketersediaan bahan baku, dan pembuatan kopi itu sendiri. Subsistem Pembayaran menangani proses transaksi pembayaran, termasuk penerimaan uang, pengembalian uang kembalian, dan pencatatan keuntungan. Subsistem Pelaporan bertugas menghasilkan laporan mengenai persediaan bahan baku dan keuntungan yang diperoleh dari transaksi.
 
 \section{System Architecture}
 \subsection{Architectural Design}
-Develop a modular program structure and explain the relationships between the modules to 
-achieve  the  complete  functionality of the  system. This is a  high level overview  of how responsibilities of the system were partitioned and then assigned to subsystems. Identify each 
-high level subsystem and  the  roles or responsibilities assigned to it. Describe  how  these subsystems collaborate with each other in order to achieve the desired functionality. Don t go 
-into too much detail about the individual subsystems. The main purpose is to gain a general understanding  of how  and why the system was decomposed, and  how the  individual parts
-work together. Provide a diagram showing the major subsystems and data repositories and their interconnections. Describe the diagram if required.
+Arsitektur aplikasi "Coffee Maker" didasarkan pada Service Oriented Architecture (SOA) dengan strategi desain Aspect-Oriented Design (AOD). SOA memungkinkan aplikasi untuk dipecah menjadi beberapa layanan independen yang dapat saling berinteraksi. AOD memungkinkan implementasi aspek-aspek lintas fungsi seperti logging, validasi, pemantauan, dan keamanan secara terpisah dari logika bisnis utama.
+
+Dalam arsitektur ini, terdapat tiga subsistem utama:
+
+\begin{enumerate}
+\item \textbf{Pembuatan Kopi:} Bertanggung jawab untuk mengelola proses pembuatan kopi, mulai dari pemilihan menu hingga penyediaan kopi siap minum.
+\item \textbf{Pembayaran:} Menangani proses transaksi pembayaran, termasuk penerimaan uang, pengembalian uang kembalian, dan pencatatan keuntungan.
+\item \textbf{Pelaporan:} Menghasilkan laporan mengenai persediaan bahan baku dan keuntungan yang diperoleh dari transaksi.
+\end{enumerate}
+
+Selain itu, terdapat juga aspek-aspek lintas fungsi yang diterapkan pada setiap subsistem:
+
+\begin{itemize}
+\item \textbf{Logging:} Mencatat setiap aktivitas yang terjadi dalam sistem, seperti pesanan yang dibuat, transaksi yang dilakukan, dan laporan yang dihasilkan.
+\item \textbf{Validation:} Memastikan bahwa setiap input yang diberikan oleh pengguna valid dan sesuai dengan aturan bisnis yang berlaku.
+\item \textbf{Monitoring:} Memantau kondisi sistem secara real-time, seperti ketersediaan bahan baku dan status transaksi.
+\item \textbf{Security:} Melindungi sistem dari akses yang tidak sah dan memastikan keamanan data pengguna.
+\end{itemize}
 
 
 \begin{figure}[tbh]
@@ -76,16 +88,27 @@ work together. Provide a diagram showing the major subsystems and data repositor
 
 
 \subsection{Decomposition Description}
-Provide a decomposition of the subsystems in the architectural design. Supplement with text 
-as needed. You may choose to give a functional description or an object oriented description. For a  functional description, put top level data  flow  diagram (DFD)  and  structural 
-decomposition  diagrams. For an OO description, put subsystem model, object diagrams, generalization hierarchy diagram(s) (if any), aggregation hierarchy diagram(s) (if any),
-interface specifications, and sequence diagrams here.
+Desain komponen yang terdapat dalam aplikasi "Coffee Maker" dibagi menjadi tiga subsistem utama, yaitu Pembuatan Kopi, Pembayaran, dan Pelaporan.
 
+\begin{itemize}
+\item \textbf{Pembuatan Kopi:} Terdapat tiga jenis kopi yang berbeda, yaitu Espresso, Latte, dan Cappuccino. Setiap objek kopi memiliki variabel untuk menyimpan informasi mengenai jumlah air (water), kopi (coffee), susu (milk), dan harga (price). Method \texttt{makeCoffee()} digunakan untuk mengurangi stok bahan baku dan menambahkan harga kopi ke total pembelian.    
+\item \textbf{Pembayaran:} Terdapat empat jenis koin yang dapat diterima oleh aplikasi, yaitu Penny, Nickel, Dime, dan Quarter. Setiap objek koin memiliki variabel untuk menyimpan nilai nominal dari koin tersebut. Method \texttt{insertCoin()} digunakan untuk memasukkan koin ke dalam mesin, dan method \texttt{returnChange()} digunakan untuk memberikan kembalian kepada pengguna jika pembayaran melebihi harga minuman.
+\item \textbf{Pelaporan:} Terdapat dua jenis laporan, yaitu laporan stok bahan baku dan laporan penjualan. Method \texttt{generateStockReport()} digunakan untuk menghasilkan laporan stok bahan baku, dan method \texttt{generateSalesReport()} digunakan untuk menghasilkan laporan penjualan.
+\end{itemize}
+
+    
+
+Struktur data yang digunakan dalam aplikasi "Coffee Maker" meliputi:
+\begin{itemize}
+\item Array/List: Digunakan untuk menyimpan daftar jenis kopi yang tersedia, serta daftar atribut dari setiap jenis kopi seperti water, coffee, milk, dan price.
+\item Dictionary or Map: Digunakan untuk menyimpan nilai nominal koin (Penny, Nickel, Dime, dan Quarter) dalam bentuk pasangan key-value.
+\item Object/Classes: Digunakan untuk merepresentasikan entitas subsistem seperti pembuatan kopi, pembayaran, dan pelaporan.
+\end{itemize}
 
 \subsection{Design Rationale}
-Discuss the rationale for selecting the architecture described in 3.1 including critical issues
-and  trade/offs that were  considered. You  may discuss other  architectures that were 
-considered, provided that you explain why you didn't choose them.
+Arsitektur SOA dipilih karena kemampuannya untuk memecah aplikasi menjadi layanan-layanan independen yang dapat dikembangkan, diuji, dan dikelola secara terpisah. Hal ini memudahkan dalam pengembangan dan pemeliharaan aplikasi, terutama dalam tim yang besar. Selain itu, SOA juga memungkinkan skalabilitas yang lebih baik, karena setiap layanan dapat ditingkatkan secara independen sesuai kebutuhan.
+
+Strategi desain AOD dipilih karena kemampuannya untuk mengimplementasikan aspek-aspek lintas fungsi secara terpisah dari logika bisnis utama. Hal ini meningkatkan modularitas dan reusabilitas kode, karena aspek-aspek tersebut dapat diterapkan pada berbagai bagian aplikasi tanpa harus mengubah kode utama. Selain itu, AOD juga memudahkan dalam pemeliharaan dan pengembangan aplikasi, karena perubahan pada aspek-aspek tersebut dapat dilakukan tanpa mempengaruhi bagian lain dari aplikasi.
 
 
 \section{Data Design}
