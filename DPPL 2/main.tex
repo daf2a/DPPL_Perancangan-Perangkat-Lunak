@@ -6,12 +6,12 @@
 \title{
 {\includegraphics[width=3cm, height=3cm]{img/LambangITS.png}}
 \\
-{Dokumen Perancangan Perangkat Lunak \\untuk Proyek Pembuatan Coffee Maker}
+{Software Design Document for Coffee Maker}
 }
 
 
 
-\author{Penulis: 
+\author{Author: 
 \\Widian Sasi Disertasiani (5025211024) \\
 Anggara Saputra (5025211241) \\
 Wardatul Amalia Safitri (5025211006) \\
@@ -24,19 +24,14 @@ Muhammad Daffa’ Ashdaqfillah (5025211015) \\
 
 \section{Introduction}
 \subsection{Purpose}
-Identify the purpose of this SDD and its intended audience. (e.g. This software design
-document describes the architecture and system design of XX.. ).
+Dokumen desain perangkat lunak ini (SDD) menjelaskan desain arsitektur dan sistem dari aplikasi "Coffee Maker". Dokumen ini ditujukan untuk pengembang perangkat lunak, penguji, dan pemangku kepentingan lainnya yang terlibat dalam pengembangan dan pemeliharaan aplikasi ini.
 
 
 \subsection{Scope}
-Provide a description and scope of the software and explain the goals, objectives and benefits
-of your project. This will provide the basis for the brief description of your product.
-
+Aplikasi "Coffee Maker" adalah sebuah sistem otomatis yang dirancang untuk menyederhanakan proses pembuatan kopi, pembayaran, dan pelaporan. Tujuan dari proyek ini adalah untuk menciptakan sebuah aplikasi yang efisien, handal, dan mudah digunakan yang dapat memenuhi kebutuhan pengguna dalam membuat kopi dengan cepat dan mudah. Manfaat dari proyek ini meliputi peningkatan efisiensi dalam proses pembuatan kopi, pengurangan kesalahan manusia, dan penyediaan laporan yang akurat mengenai transaksi dan persediaan bahan baku.
 
 \subsection{Overview}
-Provide an overview of this document and its organization.
-
-
+Dokumen ini memberikan gambaran menyeluruh tentang desain perangkat lunak aplikasi "Coffee Maker". Dokumen ini mencakup desain arsitektur, spesifikasi abstrak, desain antarmuka, desain komponen, desain struktur data, dan desain algoritma. Selain itu, dokumen ini juga membahas aspek-aspek penting seperti logging, validasi, pemantauan, dan keamanan yang diterapkan dalam aplikasi ini.
 
 \subsection{Reference Material}
 This section is optional.
@@ -53,8 +48,9 @@ known to the audience.
 \begin{tabular}{|l|l|}
 \hline
 \multicolumn{1}{|c|}{\textbf{Term}} & \multicolumn{1}{c|}{\textbf{Definition}}                                                                                              \\ \hline
-Software Design Document (SDD)      & \begin{tabular}[c]{@{}l@{}}Used as the primary medium for communicating software \\ design information.\end{tabular}                  \\ \hline
-Design Entity                       & \begin{tabular}[c]{@{}l@{}}An element of a design that is structurally and functionally \\ distinct from other elements.\end{tabular} \\ \hline
+Software Design Document (SDD)      & \begin{tabular}[c]{@{}l@{}}Digunakan sebagai media utama untuk \\mengkomunikasikan informasi desain \\ perangkat lunak.\end{tabular}                  \\ \hline
+Design Entity                       & \begin{tabular}[c]{@{}l@{}}Sebuah elemen dari desain yang secara \\struktural dan fungsional berbeda dari \\ elemen lainnya.\end{tabular} \\ \hline
+Service Oriented Architecture (SOA)      & \begin{tabular}[c]{@{}l@{}}Sebuah gaya arsitektur perangkat lunak \\ yang memungkinkan aplikasi untuk saling \\ berinteraksi melalui layanan yang \\ terdefinisi dengan baik..\end{tabular}                  \\ \hline
 \end{tabular}
 \end{table}
 
