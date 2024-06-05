@@ -319,20 +319,55 @@ def logReport(reportType):
 
 \section{Human Interface Design}
 
-\subsection {Overview of User Interface}
-Describe the functionality of the system from the user s perspective. Explain  how the user 
-will be  able  to use  your system to complete  al the  expected  features and  the  feedback 
-information that will be displayed for the user.
+\subsection{Overview of User Interface}
+Sistem Coffee Maker didesain dengan antarmuka pengguna yang sederhana dan mudah digunakan untuk memfasilitasi transaksi pembelian kopi. Pengguna dapat berinteraksi dengan berbagai menu untuk memilih jenis kopi, memproses pembayaran, dan mendapatkan laporan bahan yang tersedia. Berikut adalah gambaran fungsi utama dari perspektif pengguna:
 
-\subsection {Screen Images}
-Display screenshots showing the interface from the users perspective. These can be  hand drawn
-or you can use an automated drawing tool. Just make them as accurate as possible.
+\begin{itemize}
+    \item \textbf{Main Menu}: Pengguna dapat memilih untuk melihat daftar minuman, memproses pesanan, atau melihat laporan bahan.
+    \item \textbf{List Menu}: Menampilkan daftar minuman yang tersedia seperti Espresso, Latte, dan Cappuccino beserta harga masing-masing.
+    \item \textbf{Additional Option}: Opsi tambahan untuk menyesuaikan pesanan atau menambahkan permintaan khusus.
+    \item \textbf{Warning Pop-up}: Memberikan peringatan jika terjadi kesalahan, seperti bahan yang tidak mencukupi atau pembayaran yang tidak valid.
+    \item \textbf{Payment Menu}: Mengarahkan pengguna untuk memasukkan jumlah uang yang dibutuhkan untuk memproses pesanan.
+    \item \textbf{Payment Warning}: Memberikan notifikasi jika jumlah uang yang dimasukkan tidak cukup.
+    \item \textbf{Payment Change}: Menampilkan jumlah kembalian setelah transaksi berhasil diproses.
+\end{itemize}
 
+Feedback informasi yang akan ditampilkan untuk pengguna mencakup konfirmasi pesanan, notifikasi keberhasilan atau kegagalan transaksi, dan laporan bahan baku yang tersedia.
 
+\subsection{Screen Images}
+\subsubsection{Main Menu}
+\includegraphics[width=1\linewidth]{./img/mainMenu.png}
 
-\subsection {Screen Objects and Actions}
-A discussion of screen objects and actions associated with those objects.
+\subsubsection{List Menu}
+\includegraphics[width=1\linewidth]{./img/listMenu.png}
 
+\subsubsection{Additional Option}
+\includegraphics[width=1\linewidth]{./img/additionalMenu.png}
+
+\subsubsection{Warning Pop-up}
+\includegraphics[width=1\linewidth]{./img/warningMenu.png}
+
+\subsubsection{Payment Menu}
+\includegraphics[width=1\linewidth]{./img/Payment.png}
+
+\subsubsection{Payment Warning}
+\includegraphics[width=1\linewidth]{./img/Payment-1.png}
+
+\subsubsection{Payment Change}
+\includegraphics[width=1\linewidth]{./img/Payment-2.png}
+
+\subsection{Screen Objects and Actions}
+Berikut adalah objek-objek layar dan tindakan yang berkaitan:
+
+\begin{itemize}
+    \item \textbf{Main Menu}: Objek utama yang berisi opsi untuk melihat daftar minuman, memproses pesanan, dan melihat laporan bahan. Tindakan yang berkaitan adalah navigasi ke menu lain berdasarkan pilihan pengguna.
+    \item \textbf{List Menu}: Menampilkan daftar minuman yang tersedia dengan pilihan untuk memilih minuman. Tindakan yang berkaitan adalah memilih minuman untuk memproses pesanan.
+    \item \textbf{Additional Option}: Opsi tambahan untuk pengguna menyesuaikan pesanan mereka. Tindakan yang berkaitan adalah menambahkan atau mengubah permintaan khusus.
+    \item \textbf{Warning Pop-up}: Menampilkan pesan peringatan jika terjadi kesalahan. Tindakan yang berkaitan adalah menutup pop-up dan memperbaiki kesalahan yang ditunjukkan.
+    \item \textbf{Payment Menu}: Mengarahkan pengguna untuk memasukkan uang. Tindakan yang berkaitan adalah menghitung jumlah uang yang dimasukkan dan memverifikasi kecukupannya.
+    \item \textbf{Payment Warning}: Memberikan pesan peringatan jika uang yang dimasukkan tidak cukup. Tindakan yang berkaitan adalah meminta pengguna untuk menambah uang atau membatalkan transaksi.
+    \item \textbf{Payment Change}: Menampilkan jumlah kembalian setelah transaksi berhasil. Tindakan yang berkaitan adalah memberikan kembalian kepada pengguna.
+\end{itemize}
 
 \section{Requirements Matrix}
 Provide a cross reference that traces components and data structures to the requirements in your
