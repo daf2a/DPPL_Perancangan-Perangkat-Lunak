@@ -1,6 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{hyperref}
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 
 \title{
@@ -370,17 +372,91 @@ Berikut adalah objek-objek layar dan tindakan yang berkaitan:
 \end{itemize}
 
 \section{Requirements Matrix}
-Provide a cross reference that traces components and data structures to the requirements in your
-SRS document.
-Use  a  tabular  format to show  which system  components satisfy each of the  functional 
-requirements from the SRS. Refer to the functional requirements by the numbers/codes that you 
-gave them in the SRS.
 
+Tabel berikut menyediakan referensi silang yang menelusuri komponen dan struktur data ke kebutuhan dalam dokumen SRS. Setiap komponen sistem dan struktur data dipetakan ke kebutuhan fungsional yang dipenuhinya.
 
-\section{APPENDICES}
-This section is optional.
-Appendices may be included, either directly or by reference, to provide supporting details that could 
-aid in the understanding of the Software Design Document.
+\begin{longtable}{|p{3cm}|p{5cm}|p{5cm}|}
+\hline
+\textbf{Requirement ID} & \textbf{Description} & \textbf{Components / Data Structures} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Requirement ID} & \textbf{Description} & \textbf{Components / Data Structures} \\
+\hline
+\endhead
+FR-1 & Pengguna dapat memilih jenis kopi & Coffee, UserInterface \\
+\hline
+FR-2 & Pengguna dapat melakukan pembayaran & Payment, Coin, UserInterface \\
+\hline
+FR-3 & Sistem memberikan kembalian jika pembayaran berlebih & Payment, Coin, Transaction \\
+\hline
+FR-4 & Sistem memeriksa ketersediaan bahan & Inventory, Coffee \\
+\hline
+FR-5 & Sistem mencatat setiap transaksi & Logging, Transaction \\
+\hline
+FR-6 & Pengguna dapat menghasilkan laporan penjualan & SalesReport, ReportGenerator \\
+\hline
+FR-7 & Pengguna dapat menghasilkan laporan persediaan & StockReport, ReportGenerator \\
+\hline
+FR-8 & Sistem memvalidasi input pengguna & Validation, UserInterface \\
+\hline
+FR-9 & Sistem memantau status secara real-time & Monitoring, Inventory, Coffee \\
+\hline
+FR-10 & Sistem memastikan keamanan transaksi & Security, Payment \\
+\hline
+\caption{Requirements Matrix}
+\label{table:req_matrix}
+\end{longtable}
+
+\section{Appendices}
+
+\subsection{Appendix A: Glossary of Terms}
+
+\begin{itemize}
+    \item \textbf{SDD} - Dokumen Desain Perangkat Lunak, digunakan sebagai media utama untuk mengkomunikasikan informasi desain perangkat lunak.
+    \item \textbf{Design Entity} - Elemen dari desain yang secara struktural dan fungsional berbeda dari elemen lainnya.
+    \item \textbf{SOA} - Arsitektur Berorientasi Layanan, sebuah gaya arsitektur perangkat lunak yang memungkinkan aplikasi untuk saling berinteraksi melalui layanan yang terdefinisi dengan baik.
+    \item \textbf{AOD} - Desain Berorientasi Aspek, paradigma yang bertujuan untuk meningkatkan modularitas dengan memungkinkan pemisahan cross-cutting concerns.
+\end{itemize}
+
+\subsection{Appendix B: Reference Material}
+
+\begin{itemize}
+    \item Program: \url{https://github.com/jeremyrenaudin/coffee-machineprogram}
+\end{itemize}
+
+\subsection{Appendix C: Team Information}
+
+\begin{itemize}
+    \item Widian Sasi Disertasiani (5025211024)
+    \item Anggara Saputra (5025211241)
+    \item Wardatul Amalia Safitri (5025211006)
+    \item Muhammad Daffa’ Ashdaqfillah (5025211015)
+\end{itemize}
+
+\subsection{Appendix D: Supervisor Information}
+
+\begin{itemize}
+    \item Dosen: Adhatus Solichah A., S.Kom, M.Sc
+\end{itemize}
+
+\subsection{Appendix E: Revision History}
+
+\begin{longtable}{|p{3cm}|p{2cm}|p{5cm}|p{3cm}|}
+\hline
+\textbf{Date} & \textbf{Version} & \textbf{Description} & \textbf{Author} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Date} & \textbf{Version} & \textbf{Description} & \textbf{Author} \\
+\hline
+\endhead
+May 16, 2024 & 1.0 & Initial draft & Team \\
+\hline
+June 5, 2024 & 1.1 & Revised draft with additional sections & Team \\
+\hline
+\caption{Revision History}
+\end{longtable}
 
 \section {References}
 \bibliographystyle{IEEEtranS}
